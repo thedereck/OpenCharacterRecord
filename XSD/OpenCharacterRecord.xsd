@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name ="OpenCharacterRecord" type="RecordType"/>
+    <xs:complexType name="RecordType">
+        <xs:choice>
+            <xs:element ref="BasicFantasyRolePlayingGame_2ndEdition"/>
+            <xs:element ref="SpiritOfTheCentury"/>
+        </xs:choice>
+        <xs:attribute name="version" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="0.1" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <!-- Record Types -->
+    <xs:element name="BasicFantasyRolePlayingGame_2ndEdition">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Identities" type="BasicFantasyRolePlayingGame_2ndEdition_IdentitiesType" minOccurs="1" maxOccurs="1"/>
+                <xs:choice>
+                    <xs:element name="Dwarf" type="BasicFantasyRolePlayingGame_2ndEdition_Race_DwarfType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="Elf" type="BasicFantasyRolePlayingGame_2ndEdition_Race_ElfType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="Halfling" type="BasicFantasyRolePlayingGame_2ndEdition_Race_HalflingType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="Human" type="BasicFantasyRolePlayingGame_2ndEdition_Race_HumanType" minOccurs="1" maxOccurs="1"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SpiritOfTheCentury"></xs:element>
+    <!-- BasicFantasyRolePlayingGame_2ndEdition Types -->
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_IdentitiesType">
+        <xs:sequence>
+            <xs:element name="Identity" type="BasicFantasyRolePlayingGame_2ndEdition_IdentityType" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_IdentityType">
+        <xs:sequence>
+            <xs:element name="Name" type="BasicFantasyRolePlayingGame_2ndEdition_Identity_NameType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Background" type="BasicFantasyRolePlayingGame_2ndEdition_Identity_BackgroundType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BasicFantasyRolePlayingGame_2ndEdition_Identity_BackgroundType">
+        <xs:restriction base="BasicFantasyRolePlayingGame_2ndEdition_BaseStringType">
+            <xs:length value="2550"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BasicFantasyRolePlayingGame_2ndEdition_Identity_NameType">
+        <xs:restriction base="BasicFantasyRolePlayingGame_2ndEdition_BaseStringType">
+            <xs:length value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_Race_DwarfType">
+        
+    </xs:complexType>
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_Race_ElfType"></xs:complexType>
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_Race_HalflingType"></xs:complexType>
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_Race_HumanType"></xs:complexType>
+
+    
+    
+    
+    
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_ClassesType"></xs:complexType>
+    <xs:complexType name="BasicFantasyRolePlayingGame_2ndEdition_AbilitiesType"></xs:complexType>
+    <!-- BasicFantasyRolePlayingGame_2ndEdition Base Types -->
+    <xs:simpleType name="BasicFantasyRolePlayingGame_2ndEdition_BaseStringType">
+        <xs:restriction base="OpenCharacterRecordBaseStringType"/>
+    </xs:simpleType>
+    <!-- Global Base Types -->
+    <xs:simpleType name="OpenCharacterRecordBaseStringType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+</xs:schema>
