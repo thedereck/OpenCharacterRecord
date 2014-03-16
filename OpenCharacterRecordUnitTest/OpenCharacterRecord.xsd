@@ -81,20 +81,113 @@
     </xs:complexType>
     <xs:complexType name="BFRPG2_DwarfSpecialAbilities">
         <xs:sequence>
-            <xs:element name="DarkVision" type="BFRPG2_DwarfDarkVision" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Darkvision" type="BFRPG2_DwarfDarkvision" minOccurs="1" maxOccurs="1"/>
             <xs:element name="DetectSlantingPassages" type="BFRPG2_DwarfDetectSlantingPassages" minOccurs="1" maxOccurs="1"/>
             <xs:element name="DetectTraps" type="BFRPG2_DwarfDetectTraps" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="DetectShiftingWalls" type="BFRPG2_DwarfDetectTraps" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="DetectShiftingWalls" type="BFRPG2_DwarfDetectShiftingWalls" minOccurs="1" maxOccurs="1"/>
             <xs:element name="DetectNewConstruction" type="BFRPG2_DwarfDetectNewConstruction" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="BFRPG2_DwarfDarkVision">
-        <xs:choice minOccurs="1" maxOccurs="1">
-            <xs:element name="Feet" type="BFRPG2_Integer" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="Inches" type="BFRPG2_Integer" minOccurs="0" maxOccurs="1"/>
-        </xs:choice>
+    <xs:complexType name="BFRPG2_ElfSpecialAbilities">
+        <xs:sequence>
+            <xs:element name="Darkvision" type="BFRPG2_ElfDarkvision" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="DetectSecretDoors" type="BFRPG2_ElfDetectSecretDoors" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="DetectSecretDoorsCursory" type="BFRPG2_ElfDetectSecretDoorsCursory" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ImmuneToGhoulParalysis" type="BFRPG2_ElfImmuneToGhoulParalysis" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
     </xs:complexType>
-    
+    <xs:complexType name="BFRPG2_HalflingSpecialAbilities">
+        <xs:sequence>
+            <xs:element name="RangedWeaponsBonus" type="BFRPG2_HalflingRangedWeaponsBonus" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LargeCreatureArmorClassBonus" type="BFRPG2_HalflingLargeCreatureArmorClassBonus" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="IntiativeDieRollBonus" type="BFRPG2_HalflingInitiativeDieRollBonus" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HideInForestTerrain" type="BFRPG2_HalflingHideInForestTerrain" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HideInNonForestTerrains" type="BFRPG2_HalflingHideInNonForestTerrains" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_HumanSpecialAbilities">
+        <xs:sequence>
+            <xs:element name="ExperiencePointBonus" type="BFRPG2_HumanExperiencePointBonus" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_DwarfDarkvision">
+        <xs:restriction base="BFRPG2_Darkvision"/>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_DwarfDetectSlantingPassages">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Detect slanting passages on a roll of 1-2 on 1d6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_DwarfDetectTraps">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Detect traps on a roll of 1-2 on 1d6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_DwarfDetectShiftingWalls">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Detect shifting walls on a roll of 1-2 on 1d6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_DwarfDetectNewConstruction">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Detect new construction on a roll of 1-2 on 1d6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ElfDarkvision">
+        <xs:restriction base="BFRPG2_Darkvision"/>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ElfDetectSecretDoors">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Detect secret doors on a roll of 1-2 on 1d6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ElfDetectSecretDoorsCursory">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Detect secret doors with a cursory look on a roll of 1 on 1d6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ElfImmuneToGhoulParalysis">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Immune to the paralyzing attack of ghouls"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_HalflingRangedWeaponsBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="+1 attack bonus when using ranged weapons"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_HalflingLargeCreatureArmorClassBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="+2 armor attack bonus when attacked in melee by creatures larger than man-sized"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_HalflingInitiativeDieRollBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="+1 to Initiative die rolls"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_HalflingHideInForestTerrain">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="10% chance of being detected when hiding in forest terrains"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_HalflingHideInNonForestTerrains">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="30% chance of being detected when hiding in terrains that are not forests"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_HumanExperiencePointBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="10% bonus to all experience points earned"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_Darkvision">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Darkvision with a 60' range"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
     <xs:complexType name="BFRPG2_DwarfAbilities">
         <xs:sequence>
             <xs:element name="Strength" type="BFRPG2_DwarfStrength" minOccurs="1" maxOccurs="1"/>
@@ -1711,9 +1804,10 @@
     </xs:complexType>
 
 
-    <xs:simpleType name="BFRPG2_UnitsOfDistance">
+    <xs:simpleType name="BFRPG2_UnitOfDistance">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="feet"/>
+            <xs:enumeration value="inches"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="BFRPG2_XP">
