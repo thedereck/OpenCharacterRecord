@@ -18,1591 +18,228 @@
         </xs:attribute>
     </xs:complexType>
 
-    <!-- OCR Record Types -->
+    <!-- Basic Fantasy Role-Playing Game, 2nd Edition (BFRPG2) -->
     <xs:complexType name="BFRPG2">
-        <xs:sequence>
-            <xs:element name="Identities" type="BFRPG2_Identities" minOccurs="1" maxOccurs="1"/>
-            <xs:choice minOccurs="1" maxOccurs="1">
-                <xs:element name="Dwarf" type="BFRPG2_Dwarf"/>
-                <xs:element name="Elf" type="BFRPG2_Elf"/>
-                <xs:element name="Halfling" type="BFRPG2_Halfling"/>
-                <xs:element name="Human" type="BFRPG2_Human"/>
-            </xs:choice>
-        </xs:sequence>
-    </xs:complexType>
-
-    <!-- BFRPG2 Types -->
-    <xs:complexType name="BFRPG2_Identities">
-        <xs:sequence>
-            <xs:element name="Identity" type="BFRPG2_Identity" minOccurs="1" maxOccurs="25"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_Identity">
         <xs:sequence>
             <xs:element name="Name" type="BFRPG2_Name" minOccurs="1" maxOccurs="1"/>
             <xs:element name="Background" type="BFRPG2_Background" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Race" type="BFRPG2_Races" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Classes" type="BFRPG2_Classes" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="CharacterAbilities" type="BFRPG2_CharacterAbilities" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ArmorClass" type="BFRPG2_ArmorClass" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HitPoints" type="BFRPG2_HitPoints" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SavingThrows" type="BFRPG2_SavingThrows" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Languages" type="BFRPG2_Languages" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="BFRPG2_Background">
-        <xs:restriction base="BFRPG2_String">
-            <xs:minLength value="0"/>
-            <xs:maxLength value="2550"/>
-        </xs:restriction>
-    </xs:simpleType>
     <xs:simpleType name="BFRPG2_Name">
         <xs:restriction base="BFRPG2_String">
             <xs:minLength value="1"/>
             <xs:maxLength value="255"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="BFRPG2_Background">
+        <xs:restriction base="BFRPG2_String">
+            <xs:minLength value="0"/>
+            <xs:maxLength value="2550"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Races">
+        <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element name="Dwarf" type="BFRPG2_Dwarf" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Elf" type="BFRPG2_Elf" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Halfling" type="BFRPG2_Halfling" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Human" type="BFRPG2_Human" minOccurs="1" maxOccurs="1"/>
+        </xs:choice>
+    </xs:complexType>
     <xs:complexType name="BFRPG2_Dwarf">
-        <xs:sequence>
-            <xs:element name="SpecialAbilities" type="BFRPG2_DwarfSpecialAbilities" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Classes" type="BFRPG2_DwarfClasses" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Abilities" type="BFRPG2_DwarfAbilities" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Restrictions" type="BFRPG2_DwarfRestrictions" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SavingThrowModifiers" type="BFRPG2_DwarfSavingThrowModifiers" minOccurs="1" maxOccurs="1"/>
+         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="BFRPG2_Elf">
-        <xs:sequence>
-            <xs:element name="SpecialAbilities" type="BFRPG2_ElfSpecialAbilities" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Classes" type="BFRPG2_ElfClasses" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_Halfling">
-        <xs:sequence>
-            <xs:element name="SpecialAbilities" type="BFRPG2_HalflingSpecialAbilities" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Classes" type="BFRPG2_HalflingClasses" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_Human">
-        <xs:sequence>
-            <xs:element name="SpecialAbilities" type="BFRPG2_HumanSpecialAbilities" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Classes" type="BFRPG2_HumanClasses" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_DwarfSpecialAbilities">
-        <xs:sequence>
-            <xs:element name="Darkvision" type="BFRPG2_DwarfDarkvision" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="DetectSlantingPassages" type="BFRPG2_DwarfDetectSlantingPassages" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="DetectTraps" type="BFRPG2_DwarfDetectTraps" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="DetectShiftingWalls" type="BFRPG2_DwarfDetectShiftingWalls" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="DetectNewConstruction" type="BFRPG2_DwarfDetectNewConstruction" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ElfSpecialAbilities">
-        <xs:sequence>
-            <xs:element name="Darkvision" type="BFRPG2_ElfDarkvision" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="DetectSecretDoors" type="BFRPG2_ElfDetectSecretDoors" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="DetectSecretDoorsCursory" type="BFRPG2_ElfDetectSecretDoorsCursory" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="ImmuneToGhoulParalysis" type="BFRPG2_ElfImmuneToGhoulParalysis" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_HalflingSpecialAbilities">
-        <xs:sequence>
-            <xs:element name="RangedWeaponsBonus" type="BFRPG2_HalflingRangedWeaponsBonus" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="LargeCreatureArmorClassBonus" type="BFRPG2_HalflingLargeCreatureArmorClassBonus" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="IntiativeDieRollBonus" type="BFRPG2_HalflingInitiativeDieRollBonus" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="HideInForestTerrain" type="BFRPG2_HalflingHideInForestTerrain" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="HideInNonForestTerrains" type="BFRPG2_HalflingHideInNonForestTerrains" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_HumanSpecialAbilities">
-        <xs:sequence>
-            <xs:element name="ExperiencePointBonus" type="BFRPG2_HumanExperiencePointBonus" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:simpleType name="BFRPG2_DwarfDarkvision">
-        <xs:restriction base="BFRPG2_Darkvision"/>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_DwarfDetectSlantingPassages">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Detect slanting passages on a roll of 1-2 on 1d6"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_DwarfDetectTraps">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Detect traps on a roll of 1-2 on 1d6"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_DwarfDetectShiftingWalls">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Detect shifting walls on a roll of 1-2 on 1d6"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_DwarfDetectNewConstruction">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Detect new construction on a roll of 1-2 on 1d6"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ElfDarkvision">
-        <xs:restriction base="BFRPG2_Darkvision"/>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ElfDetectSecretDoors">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Detect secret doors on a roll of 1-2 on 1d6"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ElfDetectSecretDoorsCursory">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Detect secret doors with a cursory look on a roll of 1 on 1d6"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ElfImmuneToGhoulParalysis">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Immune to the paralyzing attack of ghouls"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_HalflingRangedWeaponsBonus">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="+1 attack bonus when using ranged weapons"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_HalflingLargeCreatureArmorClassBonus">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="+2 armor attack bonus when attacked in melee by creatures larger than man-sized"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_HalflingInitiativeDieRollBonus">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="+1 to Initiative die rolls"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_HalflingHideInForestTerrain">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="10% chance of being detected when hiding in forest terrains"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_HalflingHideInNonForestTerrains">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="30% chance of being detected when hiding in terrains that are not forests"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_HumanExperiencePointBonus">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="10% bonus to all experience points earned"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_Darkvision">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="Darkvision with a 60' range"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-
     <xs:complexType name="BFRPG2_DwarfAbilities">
-        <xs:sequence>
-            <xs:element name="Strength" type="BFRPG2_DwarfStrength" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Intelligence" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Wisdom" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Dexterity" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Constitution" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Charisma" minOccurs="1" maxOccurs="1"/>
+        <xs:sequence minOccurs="5" maxOccurs="5">
+            <xs:element name="Ability" type="BFRPG2_DwarfAbility" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_DwarfAbility">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Dwarves have Darkvision with a 60' range."/>
+            <xs:enumeration value="When searching for slanting passages, Dwarves detect on a roll of 1-2 on 1d6."/>
+            <xs:enumeration value="When searching for traps, Dwarves detect on a roll of 1-2 on 1d6."/>
+            <xs:enumeration value="When searching for shifting walls, Dwarves detect on a roll of 1-2 on 1d6."/>
+            <xs:enumeration value="When searching for new construction, Dwarves detect on a roll of 1-2 on 1d6."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_DwarfRestrictions">
+        <xs:sequence minOccurs="4" maxOccurs="4">
+            <xs:element name="Restriction" type="BFRPG2_DwarfRestriction" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_DwarfRestriction">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Dwarves may not be Magic-Users."/>
+            <xs:enumeration value="Dwarves must have a minimum Constitution score of 9."/>
+            <xs:enumeration value="Dwarves must have a maximum Charisma score of 17."/>
+            <xs:enumeration value="Dwarves must employ weapons greater than 4' in length."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_DwarfSavingThrowModifiers">
+        <xs:sequence minOccurs="7" maxOccurs="7">
+            <xs:element name="Modifier" type="BFRPG2_DwarfSavingThrowModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_DwarfSavingThrowModifier">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Dwarves save at +4 vs. Death Ray."/>
+            <xs:enumeration value="Dwarves save at +3 vs. Dragon Breath."/>
+            <xs:enumeration value="Dwarves save at +4 vs. Magic Wands."/>
+            <xs:enumeration value="Dwarves save at +4 vs. Paralysis."/>
+            <xs:enumeration value="Dwarves save at +4 vs. Petrify."/>
+            <xs:enumeration value="Dwarves save at +4 vs. Poison."/>
+            <xs:enumeration value="Dwarves save at +4 vs. Spells."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Elf">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Abilities" type="BFRPG2_ElfAbilities" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Restrictions" type="BFRPG2_ElfRestrictions" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SavingThrowModifiers" type="BFRPG2_ElfSavingThrowModifiers" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="BFRPG2_ElfAbilities">
-        <xs:sequence>
-            <xs:element name="Strength" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Intelligence" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Wisdom" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Dexterity" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Constitution" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Charisma" minOccurs="1" maxOccurs="1"/>
+        <xs:sequence minOccurs="4" maxOccurs="4">
+            <xs:element name="Ability" type="BFRPG2_ElfAbility" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_ElfAbility">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Elves have Darkvision with a 60' range."/>
+            <xs:enumeration value="When searching for secret doors, Elves detect on a roll of 1-2 of 1d6."/>
+            <xs:enumeration value="When not searching for secret doors, Elves detect on a roll of 1 of 1d6."/>
+            <xs:enumeration value="Elves are immune to paralyzing attack of ghouls."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_ElfRestrictions">
+        <xs:sequence minOccurs="3" maxOccurs="3">
+            <xs:element name="Restriction" type="BFRPG2_ElfRestriction" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_ElfRestriction">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Elves must have a minimum Intelligence score of 9."/>
+            <xs:enumeration value="Elves must have a maximum Constitution score of 17."/>
+            <xs:enumeration value="Elves never roll higher than d6 for Hit Points."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_ElfSavingThrowModifiers">
+        <xs:sequence minOccurs="4" maxOccurs="4">
+            <xs:element name="Modifier" type="BFRPG2_ElfSavingThrowModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_ElfSavingThrowModifier">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Elves save at +2 vs. Magic Wands."/>
+            <xs:enumeration value="Elves save at +1 vs. Paralysis."/>
+            <xs:enumeration value="Elves save at +1 vs. Petrify."/>
+            <xs:enumeration value="Elves save at +2 vs. Spells."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Halfling">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Abilities" type="BFRPG2_HalflingAbilities" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Restrictions" type="BFRPG2_HalflingRestrictions" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SavingThrowModifiers" type="BFRPG2_HalflingSavingThrowModifiers" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="BFRPG2_HalflingAbilities">
-        <xs:sequence>
-            <xs:element name="Strength" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Intelligence" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Wisdom" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Dexterity" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Constitution" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Charisma" minOccurs="1" maxOccurs="1"/>
+        <xs:sequence minOccurs="5" maxOccurs="5">
+            <xs:element name="Ability" type="BFRPG2_HalflingAbility" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_HalflingAbility">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Halflings get a +1 attack bonus when using ranged weapons."/>
+            <xs:enumeration value="Halflings get a +2 Armor Class bonus when melee attacked by a larger than man-sized creatures."/>
+            <xs:enumeration value="Halflings get a +1 bonus to Initiative die rolls."/>
+            <xs:enumeration value="Halflings have a 10% chance of being detected when hiding in forest terrains."/>
+            <xs:enumeration value="Halflings have a 30% chance of being detected when hiding in non-forest terrains."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_HalflingRestrictions">
+        <xs:sequence minOccurs="6" maxOccurs="6">
+            <xs:element name="Restriction" type="BFRPG2_HalflingRestriction" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_HalflingRestriction">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Halflings may not be Magic-Users."/>
+            <xs:enumeration value="Halflings must have a minimum Dexterity score of 9."/>
+            <xs:enumeration value="Halflings must have a maximum Strength score of 17."/>
+            <xs:enumeration value="Halflings never roll higher than d6 for Hit Points."/>
+            <xs:enumeration value="Halflings may not use Large weapons."/>
+            <xs:enumeration value="Halflings must wield Medium weapons with both hands."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_HalflingSavingThrowModifiers">
+        <xs:sequence minOccurs="7" maxOccurs="7">
+            <xs:element name="Modifier" type="BFRPG2_HalflingSavingThrowModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_HalflingSavingThrowModifier">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Halflings save at +4 vs. Death Ray."/>
+            <xs:enumeration value="Halflings save at +3 vs. Dragon Breath."/>
+            <xs:enumeration value="Halflings save at +4 vs. Magic Wands."/>
+            <xs:enumeration value="Halflings save at +4 vs. Paralysis."/>
+            <xs:enumeration value="Halflings save at +4 vs. Petrify."/>
+            <xs:enumeration value="Halflings save at +4 vs. Poison."/>
+            <xs:enumeration value="Halflings save at +4 vs. Spells."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Human">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Abilities" type="BFRPG2_HumanAbilities" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="BFRPG2_HumanAbilities">
-        <xs:sequence>
-            <xs:element name="Strength" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Intelligence" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Wisdom" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Dexterity" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Constitution" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Charisma" minOccurs="1" maxOccurs="1"/>
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Ability" type="BFRPG2_HumanAbility" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="BFRPG2_DwarfClasses">
-        <xs:choice minOccurs="1" maxOccurs="3">
-            <xs:element name="Cleric" type="BFRPG2_Cleric" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="0" maxOccurs="1"></xs:element>
-        </xs:choice>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ElfClasses">
+    <xs:simpleType name="BFRPG2_HumanAbility">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Humans get a 10% bonus to all Experience Points earned."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Classes">
         <xs:choice minOccurs="1" maxOccurs="4">
-            <xs:element name="Cleric" type="BFRPG2_Cleric" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Magic-User" type="BFRPG2_MagicUser" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="0" maxOccurs="1"></xs:element>
-        </xs:choice>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_HalflingClasses">
-        <xs:choice minOccurs="1" maxOccurs="3">
-            <xs:element name="Cleric" type="BFRPG2_Cleric" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="0" maxOccurs="1"></xs:element>
-        </xs:choice>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_HumanClasses">
-        <xs:choice minOccurs="1" maxOccurs="4">
-            <xs:element name="Cleric" type="BFRPG2_Cleric" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Magic-User" type="BFRPG2_MagicUser" minOccurs="0" maxOccurs="1"></xs:element>
-            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="0" maxOccurs="1"></xs:element>
+            <xs:element name="Cleric" type="BFRPG2_Cleric" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MagicUser" type="BFRPG2_MagicUser" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
         </xs:choice>
     </xs:complexType>
     <xs:complexType name="BFRPG2_Cleric">
-        <xs:choice minOccurs="1" maxOccurs="1">
-            <xs:element name="LevelOne" type="BFRPG2_ClericLevelOne" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericLevelTwo" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericLevelThree" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericLevelFour" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericLevelFive" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericLevelSix" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSeven" type="BFRPG2_ClericLevelSeven" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEight" type="BFRPG2_ClericLevelEight" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelNine" type="BFRPG2_ClericLevelNine" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTen" type="BFRPG2_ClericLevelTen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEleven" type="BFRPG2_ClericLevelEleven" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwelve" type="BFRPG2_ClericLevelTwelve" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelThirteen" type="BFRPG2_ClericLevelThirteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFourteen" type="BFRPG2_ClericLevelFourteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFifteen" type="BFRPG2_ClericLevelFifteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSixteen" type="BFRPG2_ClericLevelSixteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSeventeen" type="BFRPG2_ClericLevelSeventeen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEighteen" type="BFRPG2_ClericLevelEighteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelNineteen" type="BFRPG2_ClericLevelNineteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwenty" type="BFRPG2_ClericLevelTwenty" minOccurs="0" maxOccurs="1"/>
-        </xs:choice>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_Fighter">
-        <xs:choice minOccurs="1" maxOccurs="1">
-            <xs:element name="LevelOne" type="BFRPG2_FighterLevelOne" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwo" type="BFRPG2_FighterLevelTwo" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelThree" type="BFRPG2_FighterLevelThree" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFour" type="BFRPG2_FighterLevelFour" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFive" type="BFRPG2_FighterLevelFive" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSix" type="BFRPG2_FighterLevelSix" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSeven" type="BFRPG2_FighterLevelSeven" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEight" type="BFRPG2_FighterLevelEight" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelNine" type="BFRPG2_FighterLevelNine" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTen" type="BFRPG2_FighterLevelTen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEleven" type="BFRPG2_FighterLevelEleven" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwelve" type="BFRPG2_FighterLevelTwelve" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelThirteen" type="BFRPG2_FighterLevelThirteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFourteen" type="BFRPG2_FighterLevelFourteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFifteen" type="BFRPG2_FighterLevelFifteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSixteen" type="BFRPG2_FighterLevelSixteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSeventeen" type="BFRPG2_FighterLevelSeventeen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEighteen" type="BFRPG2_FighterLevelEighteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelNineteen" type="BFRPG2_FighterLevelNineteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwenty" type="BFRPG2_FighterLevelTwenty" minOccurs="0" maxOccurs="1"/>
-        </xs:choice>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUser">
-        <xs:sequence>
-            <xs:choice minOccurs="1" maxOccurs="1">
-                <xs:element name="LevelOne" type="BFRPG2_MagicUserLevelOne" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelTwo" type="BFRPG2_MagicUserLevelTwo" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelThree" type="BFRPG2_MagicUserLevelThree" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelFour" type="BFRPG2_MagicUserLevelFour" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelFive" type="BFRPG2_MagicUserLevelFive" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelSix" type="BFRPG2_MagicUserLevelSix" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelSeven" type="BFRPG2_MagicUserLevelSeven" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelEight" type="BFRPG2_MagicUserLevelEight" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelNine" type="BFRPG2_MagicUserLevelNine" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelTen" type="BFRPG2_MagicUserLevelTen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelEleven" type="BFRPG2_MagicUserLevelEleven" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelTwelve" type="BFRPG2_MagicUserLevelTwelve" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelThirteen" type="BFRPG2_MagicUserLevelThirteen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelFourteen" type="BFRPG2_MagicUserLevelFourteen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelFifteen" type="BFRPG2_MagicUserLevelFifteen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelSixteen" type="BFRPG2_MagicUserLevelSixteen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelSeventeen" type="BFRPG2_MagicUserLevelSeventeen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelEighteen" type="BFRPG2_MagicUserLevelEighteen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelNineteen" type="BFRPG2_MagicUserLevelNineteen" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="LevelTwenty" type="BFRPG2_MagicUserLevelTwenty" minOccurs="0" maxOccurs="1"/>
-            </xs:choice>
-            <xs:element name="Spellbook" type="BFRPG2_MagicUserSpellbook" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_Thief">
-        <xs:choice minOccurs="1" maxOccurs="1">
-            <xs:element name="LevelOne" type="BFRPG2_ThiefLevelOne" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ThiefLevelTwo" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelThree" type="BFRPG2_ThiefLevelThree" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFour" type="BFRPG2_ThiefLevelFour" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFive" type="BFRPG2_ThiefLevelFive" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSix" type="BFRPG2_ThiefLevelSix" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSeven" type="BFRPG2_ThiefLevelSeven" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEight" type="BFRPG2_ThiefLevelEight" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelNine" type="BFRPG2_ThiefLevelNine" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTen" type="BFRPG2_ThiefLevelTen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEleven" type="BFRPG2_ThiefLevelEleven" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwelve" type="BFRPG2_ThiefLevelTwelve" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelThirteen" type="BFRPG2_ThiefLevelThirteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFourteen" type="BFRPG2_ThiefLevelFourteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelFifteen" type="BFRPG2_ThiefLevelFifteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSixteen" type="BFRPG2_ThiefLevelSixteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelSeventeen" type="BFRPG2_ThiefLevelSeventeen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelEighteen" type="BFRPG2_ThiefLevelEighteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelNineteen" type="BFRPG2_ThiefLevelNineteen" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="LevelTwenty" type="BFRPG2_ThiefLevelTwenty" minOccurs="0" maxOccurs="1"/>
-        </xs:choice>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelOne">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelOneXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelTwo">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelTwoXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelTwoSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelThree">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelThreeXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelThreeSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFour">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelFourXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelFourSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFive">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelFiveXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelFiveSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSix">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelSixXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelSixSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSeven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelSevenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelSevenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelEight">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelEightXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelEightSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelNine">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelNineXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelNineSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelTen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelTenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelTenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelEleven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelElevenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelElevenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelTwelve">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelTwelveXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelTwelveSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelThirteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelThirteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelThirteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFourteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelFourteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelFourteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFifteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelFifteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelFifteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSixteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelSixteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelSixteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSeventeen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelSeventeenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelSeventeenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelEighteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelEighteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelEighteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelNineteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelNineteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelNineteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelTwenty">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ClericLevelTwentyXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_ClericLevelTwentySpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelOne">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelOneXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelTwo">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelTwoXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelThree">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelThreeXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelFour">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelFourXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelFive">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelFiveXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelSix">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelSixXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelSeven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelSevenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelEight">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelEightXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelNine">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelNineXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelTen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelTenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelEleven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelElevenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelTwelve">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelTwelveXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelThirteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelThirteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelFourteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelFourteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelFifteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelFifteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelSixteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelSixteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelSeventeen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelSeventeenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelEighteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelEighteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelNineteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelNineteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_FighterLevelTwenty">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_FighterLevelTwentyXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelOne">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelOneXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelOneSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTwo">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelTwoXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelTwoSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelThree">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelThreeXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelThreeSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFour">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelFourXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelFourSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFive">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelFiveXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelFiveSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSix">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelSixXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelSixSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSeven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelSevenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelSevenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelEight">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelEightXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelEightSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelNine">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelNineXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelNineSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelTenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelTenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelEleven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelElevenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelElevenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTwelve">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelTwelveXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelTwelveSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelThirteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelThirteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelThirteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFourteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelFourteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelFourteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFifteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelFifteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelFifteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSixteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelSixteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelSixteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSeventeen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelSeventeenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelSeventeenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelEighteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelEighteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelEighteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelNineteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelNineteenXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelNineteenSpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTwenty">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_MagicUserLevelTwentyXP" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Spells" type="BFRPG2_MagicUserLevelTwentySpells" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelOne">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelOneXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelTwo">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelTwoXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelThree">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelThreeXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelFour">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelFourXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelFive">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelFiveXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelSix">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelSixXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelSeven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelSevenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelEight">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelEightXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelNine">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelNineXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelTen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelTenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelEleven">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelElevenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelTwelve">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelTwelveXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelThirteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelThirteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelFourteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelFourteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelFifteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelFifteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelSixteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelSixteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelSeventeen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelSeventeenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelEighteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelEighteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelNineteen">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelNineteenXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ThiefLevelTwenty">
-        <xs:sequence>
-            <xs:element name="XP" type="BFRPG2_ThiefLevelTwentyXP" minOccurs="1" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:simpleType name="BFRPG2_ClericLevelOneXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="0"/>
-            <xs:maxExclusive value="1500"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelTwoXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1500"/>
-            <xs:maxExclusive value="3000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelThreeXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="3000"/>
-            <xs:maxExclusive value="6000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelFourXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="6000"/>
-            <xs:maxExclusive value="12000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelFiveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="12000"/>
-            <xs:maxExclusive value="24000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelSixXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="24000"/>
-            <xs:maxExclusive value="48000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelSevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="48000"/>
-            <xs:maxExclusive value="90000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelEightXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="90000"/>
-            <xs:maxExclusive value="180000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelNineXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="180000"/>
-            <xs:maxExclusive value="270000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelTenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="270000"/>
-            <xs:maxExclusive value="360000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelElevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="360000"/>
-            <xs:maxExclusive value="450000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelTwelveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="450000"/>
-            <xs:maxExclusive value="540000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelThirteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="540000"/>
-            <xs:maxExclusive value="630000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelFourteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="630000"/>
-            <xs:maxExclusive value="720000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelFifteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="720000"/>
-            <xs:maxExclusive value="810000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelSixteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="810000"/>
-            <xs:maxExclusive value="900000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelSeventeenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="900000"/>
-            <xs:maxExclusive value="990000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelEighteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="990000"/>
-            <xs:maxExclusive value="1080000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelNineteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1080000"/>
-            <xs:maxExclusive value="1170000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericLevelTwentyXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1170000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelOneXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="0"/>
-            <xs:maxExclusive value="2000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelTwoXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="2000"/>
-            <xs:maxExclusive value="4000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelThreeXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="4000"/>
-            <xs:maxExclusive value="8000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelFourXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="8000"/>
-            <xs:maxExclusive value="16000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelFiveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="16000"/>
-            <xs:maxExclusive value="32000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelSixXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="32000"/>
-            <xs:maxExclusive value="64000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelSevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="64000"/>
-            <xs:maxExclusive value="120000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelEightXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="120000"/>
-            <xs:maxExclusive value="240000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelNineXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="240000"/>
-            <xs:maxExclusive value="360000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelTenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="360000"/>
-            <xs:maxExclusive value="480000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelElevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="480000"/>
-            <xs:maxExclusive value="600000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelTwelveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="600000"/>
-            <xs:maxExclusive value="720000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelThirteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="720000"/>
-            <xs:maxExclusive value="840000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelFourteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="840000"/>
-            <xs:maxExclusive value="960000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelFifteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="960000"/>
-            <xs:maxExclusive value="1080000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelSixteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1080000"/>
-            <xs:maxExclusive value="1200000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelSeventeenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1200000"/>
-            <xs:maxExclusive value="1320000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelEighteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1320000"/>
-            <xs:maxExclusive value="1440000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelNineteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1440000"/>
-            <xs:maxExclusive value="1560000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_FighterLevelTwentyXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1560000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelOneXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="0"/>
-            <xs:maxExclusive value="2500"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelTwoXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="2500"/>
-            <xs:maxExclusive value="5000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelThreeXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="5000"/>
-            <xs:maxExclusive value="10000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelFourXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="10000"/>
-            <xs:maxExclusive value="20000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelFiveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="20000"/>
-            <xs:maxExclusive value="40000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelSixXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="40000"/>
-            <xs:maxExclusive value="80000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelSevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="80000"/>
-            <xs:maxExclusive value="150000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelEightXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="150000"/>
-            <xs:maxExclusive value="300000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelNineXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="300000"/>
-            <xs:maxExclusive value="450000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelTenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="450000"/>
-            <xs:maxExclusive value="600000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelElevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="600000"/>
-            <xs:maxExclusive value="750000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelTwelveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="750000"/>
-            <xs:maxExclusive value="900000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelThirteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="900000"/>
-            <xs:maxExclusive value="1050000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelFourteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1050000"/>
-            <xs:maxExclusive value="1200000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelFifteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1200000"/>
-            <xs:maxExclusive value="1350000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelSixteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1350000"/>
-            <xs:maxExclusive value="1500000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelSeventeenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1500000"/>
-            <xs:maxExclusive value="1650000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelEighteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1650000"/>
-            <xs:maxExclusive value="1800000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelNineteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1800000"/>
-            <xs:maxExclusive value="1950000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserLevelTwentyXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1950000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelOneXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="0"/>
-            <xs:maxExclusive value="1250"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelTwoXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="1250"/>
-            <xs:maxExclusive value="2500"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelThreeXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="2500"/>
-            <xs:maxExclusive value="5000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelFourXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="5000"/>
-            <xs:maxExclusive value="10000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelFiveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="10000"/>
-            <xs:maxExclusive value="20000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelSixXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="20000"/>
-            <xs:maxExclusive value="40000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelSevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="40000"/>
-            <xs:maxExclusive value="75000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelEightXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="75000"/>
-            <xs:maxExclusive value="150000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelNineXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="150000"/>
-            <xs:maxExclusive value="225000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelTenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="225000"/>
-            <xs:maxExclusive value="300000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelElevenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="300000"/>
-            <xs:maxExclusive value="375000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelTwelveXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="375000"/>
-            <xs:maxExclusive value="450000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelThirteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="450000"/>
-            <xs:maxExclusive value="525000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelFourteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="525000"/>
-            <xs:maxExclusive value="600000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelFifteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="600000"/>
-            <xs:maxExclusive value="675000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelSixteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="675000"/>
-            <xs:maxExclusive value="750000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelSeventeenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="750000"/>
-            <xs:maxExclusive value="825000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelEighteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="825000"/>
-            <xs:maxExclusive value="900000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelNineteenXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="900000"/>
-            <xs:maxExclusive value="975000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ThiefLevelTwentyXP">
-        <xs:restriction base="BFRPG2_XP">
-            <xs:minInclusive value="975000"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:complexType name="BFRPG2_ClericLevelTwoSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelThreeSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFourSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFiveSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSixSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSevenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelEightSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelNineSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelTenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelElevenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelTwelveSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelThirteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFourteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelFifteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSixteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelSeventeenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelEighteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="3"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelNineteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="6"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="3"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_ClericLevelTwentySpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_ClericSpellLevelOne" minOccurs="0" maxOccurs="6"/>
-            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_ClericSpellLevelThree" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelFour" type="BFRPG2_ClericSpellLevelFour" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFive" type="BFRPG2_ClericSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_ClericSpellLevelSix" minOccurs="0" maxOccurs="3"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelOneSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTwoSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelThreeSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFourSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFiveSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSixSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSevenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelEightSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelNineSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelElevenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTwelveSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelThirteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="2"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFourteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelFifteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSixteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelSeventeenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="3"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelEighteenSpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="6"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="3"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelNineteenSpells">
         <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="6"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="3"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="3"/>
+            <xs:element name="Level" type="BFRPG2_Level" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ExperiencePoints" type="BFRPG2_ExperiencePoints" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Spells" type="BFRPG2_ClericSpells" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="BFRPG2_MagicUserLevelTwentySpells">
-        <xs:sequence>
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="6"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="5"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="3"/>
+    <xs:complexType name="BFRPG2_ClericSpells">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="LevelOne" type="BFRPG2_ClericSpellsLevelOne" minOccurs="1" maxOccurs="6"/>
+            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellsLevelTwo" minOccurs="0" maxOccurs="5"/>
+            <xs:element name="LevelThree" type="BFRPG2_ClericSpellsLevelThree" minOccurs="0" maxOccurs="5"/>
+            <xs:element name="LevelFour" type="BFRPG2_ClericSpellsLevelFour" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="LevelFive" type="BFRPG2_ClericSpellsLevelFive" minOccurs="0" maxOccurs="3"/>
+            <xs:element name="LevelSix" type="BFRPG2_ClericSpellsLevelSix" minOccurs="0" maxOccurs="3"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="BFRPG2_ClericSpellLevelOne">
+    <xs:simpleType name="BFRPG2_ClericSpellsLevelOne">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Cause Fear"/>
             <xs:enumeration value="Cause Light Wounds"/>
@@ -1619,7 +256,7 @@
             <xs:enumeration value="Resist Cold"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericSpellLevelTwo">
+    <xs:simpleType name="BFRPG2_ClericSpellsLevelTwo">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Bane"/>
             <xs:enumeration value="Bless"/>
@@ -1632,7 +269,7 @@
             <xs:enumeration value="Spiritual Hammer"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericSpellLevelThree">
+    <xs:simpleType name="BFRPG2_ClericSpellsLevelThree">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Bestow Curse"/>
             <xs:enumeration value="Continual Darkness"/>
@@ -1647,7 +284,7 @@
             <xs:enumeration value="Striking"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericSpellLevelFour">
+    <xs:simpleType name="BFRPG2_ClericSpellsLevelFour">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Animate Dead"/>
             <xs:enumeration value="Cause Serious Wounds"/>
@@ -1662,7 +299,7 @@
             <xs:enumeration value="Sticks to Snakes"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericSpellLevelFive">
+    <xs:simpleType name="BFRPG2_ClericSpellsLevelFive">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Commune"/>
             <xs:enumeration value="Create Food"/>
@@ -1676,7 +313,7 @@
             <xs:enumeration value="Wall of Fire"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_ClericSpellLevelSix">
+    <xs:simpleType name="BFRPG2_ClericSpellsLevelSix">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Animate Objects"/>
             <xs:enumeration value="Blade Barrier"/>
@@ -1689,7 +326,30 @@
             <xs:enumeration value="Word of Recall"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserSpellLevelOne">
+    <xs:complexType name="BFRPG2_Fighter">
+        <xs:sequence>
+            <xs:element name="Level" type="BFRPG2_Level" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ExperiencePoints" type="BFRPG2_ExperiencePoints" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_MagicUser">
+        <xs:sequence>
+            <xs:element name="Level" type="BFRPG2_Level" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ExperiencePoints" type="BFRPG2_ExperiencePoints" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Spells" type="BFRPG2_MagicUserSpells" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_MagicUserSpells">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellsLevelOne" minOccurs="1" maxOccurs="6"/>
+            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellsLevelTwo" minOccurs="0" maxOccurs="5"/>
+            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellsLevelThree" minOccurs="0" maxOccurs="5"/>
+            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellsLevelFour" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellsLevelFive" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellsLevelSix" minOccurs="0" maxOccurs="3"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicUserSpellsLevelOne">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Charm Person"/>
             <xs:enumeration value="Darkness"/>
@@ -1708,7 +368,7 @@
             <xs:enumeration value="Ventroliquism"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserSpellLevelTwo">
+    <xs:simpleType name="BFRPG2_MagicUserSpellsLevelTwo">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Continual Darkness"/>
             <xs:enumeration value="Continual Light"/>
@@ -1726,7 +386,7 @@
             <xs:enumeration value="Wizard Lock"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserSpellLevelThree">
+    <xs:simpleType name="BFRPG2_MagicUserSpellsLevelThree">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Clairvoyance"/>
             <xs:enumeration value="Darkvision"/>
@@ -1744,7 +404,7 @@
             <xs:enumeration value="Water Breathing"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserSpellLevelFour">
+    <xs:simpleType name="BFRPG2_MagicUserSpellsLevelFour">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Bestow Curse"/>
             <xs:enumeration value="Charm Monster"/>
@@ -1762,7 +422,7 @@
             <xs:enumeration value="Wizard Eye"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserSpellLevelFive">
+    <xs:simpleType name="BFRPG2_MagicUserSpellsLevelFive">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Animate Dead"/>
             <xs:enumeration value="Cloudkill"/>
@@ -1776,7 +436,7 @@
             <xs:enumeration value="Wall of Stone"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_MagicUserSpellLevelSix">
+    <xs:simpleType name="BFRPG2_MagicUserSpellsLevelSix">
         <xs:restriction base="BFRPG2_String">
             <xs:enumeration value="Anti-Magic Shell"/>
             <xs:enumeration value="Death Spell"/>
@@ -1792,32 +452,197 @@
             <xs:enumeration value="Wall of Iron"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:complexType name="BFRPG2_MagicUserSpellbook">
-        <xs:sequence minOccurs="0" maxOccurs="1">
-            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellLevelOne" minOccurs="0" maxOccurs="15"/>
-            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellLevelTwo" minOccurs="0" maxOccurs="14"/>
-            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellLevelThree" minOccurs="0" maxOccurs="14"/>
-            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellLevelFour" minOccurs="0" maxOccurs="14"/>
-            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellLevelFive" minOccurs="0" maxOccurs="10"/>
-            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellLevelSix" minOccurs="0" maxOccurs="12"/>
+    <xs:complexType name="BFRPG2_Thief">
+        <xs:sequence>
+            <xs:element name="Level" type="BFRPG2_Level" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ExperiencePoints" type="BFRPG2_ExperiencePoints" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ThiefAbilities" type="BFRPG2_ThiefAbilities" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-
-
-    <xs:simpleType name="BFRPG2_UnitOfDistance">
-        <xs:restriction base="BFRPG2_String">
-            <xs:enumeration value="feet"/>
-            <xs:enumeration value="inches"/>
+    <xs:complexType name="BFRPG2_ThiefAbilities">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="OpenLocks" type="BFRPG2_ThiefAbility" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="RemoveTraps" type="BFRPG2_ThiefAbility" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="PickPockets" type="BFRPG2_ThiefAbility" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MoveSilently" type="BFRPG2_ThiefAbility" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ClimbWalls" type="BFRPG2_ThiefAbility" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Hide" type="BFRPG2_ThiefAbility" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Listen" type="BFRPG2_ThiefAbility" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SneakAttackBonus" type="BFRPG2_ThiefSneakAttackBonus" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SneakAttackDamage" type="BFRPG2_ThiefSneakAttackDamage" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_ThiefAbility">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="10"/>
+            <xs:maxInclusive value="99"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="BFRPG2_XP">
+    <xs:simpleType name="BFRPG2_ThiefSneakAttackBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Thieves get a +4 Attack bonus when attacking from behind."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ThiefSneakAttackDamage">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Thieves do double Damage when attacking from behind."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_Level">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ExperiencePoints">
         <xs:restriction base="BFRPG2_Integer">
             <xs:minInclusive value="0"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="BFRPG2_CharacterAbilities">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Strength" type="BFRPG2_Strength" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Intelligence" type="BFRPG2_Intelligence" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Wisdom" type="BFRPG2_Wisdom" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Dexterity" type="BFRPG2_Dexterity" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Constitution" type="BFRPG2_Constitution" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Charisma" type="BFRPG2_Charisma" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Strength">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Score" type="BFRPG2_CharacterAbilityScore" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MeleeModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Intelligence">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Score" type="BFRPG2_CharacterAbilityScore" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="AdditionalLanguages" type="BFRPG2_CharacterAbilityPositiveModifier" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SavingThrowAgainstIllusionModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Wisdom">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Score" type="BFRPG2_CharacterAbilityScore" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SavingThrowAgainstMagicalAttackOnPersonalWillModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Dexterity">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Score" type="BFRPG2_CharacterAbilityScore" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="RangedWeaponAttackModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ArmorClassModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="IniativeModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Constitution">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Score" type="BFRPG2_CharacterAbilityScore" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HitDieModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SavingThrowAgainstPoisonModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Charisma">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Score" type="BFRPG2_CharacterAbilityScore" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ReactionModifier" type="BFRPG2_CharacterAbilityModifier" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MaximumNumberOfRetainers" type="BFRPG2_MaximumNumberOfRetainers" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="RetainerMorale" type="BFRPG2_RetainerMorale" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_CharacterAbilityScore">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="3"/>
+            <xs:maxInclusive value="18"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_CharacterAbilityModifier">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="-3"/>
+            <xs:enumeration value="-2"/>
+            <xs:enumeration value="-1"/>
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="+1"/>
+            <xs:enumeration value="+2"/>
+            <xs:enumeration value="+3"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_CharacterAbilityPositiveModifier">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="+1"/>
+            <xs:enumeration value="+2"/>
+            <xs:enumeration value="+3"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_MaximumNumberOfRetainers">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="7"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_RetainerMorale">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="4"/>
+            <xs:maxInclusive value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ArmorClass">
+        <xs:restriction base="BFRPG2_Integer"/>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_HitPoints">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Current" type="BFRPG2_CurrentHitPoints" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Maximum" type="BFRPG2_MaximumHitPoints" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>        
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_CurrentHitPoints">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_MaximumHitPoints">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_SavingThrows">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="DeathRay" type="BFRPG2_SavingThrow" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="DragonBreath" type="BFRPG2_SavingThrow" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MagicWands" type="BFRPG2_SavingThrow" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Paralysis" type="BFRPG2_SavingThrow" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Petrify" type="BFRPG2_SavingThrow" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Poison" type="BFRPG2_SavingThrow" minOccurs="1" maxOccurs="1" />
+            <xs:element name="Spells" type="BFRPG2_SavingThrow" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_SavingThrow">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="2"/>
+            <xs:maxInclusive value="19"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Languages">
+        <xs:sequence minOccurs="1" maxOccurs="5">
+            <xs:element name="Language" type="BFRPG2_Language" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_Language">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Common"/>
+            <xs:enumeration value="Dwarvish"/>
+            <xs:enumeration value="Elvish"/>
+            <xs:enumeration value="Halfling"/>
+        </xs:restriction>
+    </xs:simpleType>
 
-    
-    
+
+
+
+
+
     <xs:simpleType name="BFRPG2_Integer">
         <xs:restriction base="OCR_Integer"/>
     </xs:simpleType>
