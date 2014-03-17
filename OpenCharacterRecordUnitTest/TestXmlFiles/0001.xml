@@ -79,7 +79,33 @@
         <Languages>
             <Language></Language>
         </Languages>
-        <Money></Money>
-        <Equipment></Equipment>
+        <Money>
+            <PlatinumPieces></PlatinumPieces>
+            <GoldPieces></GoldPieces>
+            <SilverPieces></SilverPieces>
+            <ElectrumPieces></ElectrumPieces>
+            <CopperPieces></CopperPieces>
+        </Money>
+        <Equipment>
+            <Weapons>
+                <Weapon></Weapon>
+            </Weapons>
+            <ArmorAndShields>
+                <Armor></Armor>
+                <Shield></Shield>
+            </ArmorAndShields>
+            <GeneralEquipment>
+                <Item></Item>
+            </GeneralEquipment>
+            <BeastsOfBurden>
+                <Beast></Beast>
+            </BeastsOfBurden>
+            <Vehicles>
+                <Vehicle></Vehicle>
+            </Vehicles>
+            <SiegeEngines>
+                <SiegeEngine></SiegeEngine>
+            </SiegeEngines>
+        </Equipment>
     </BFRGP2>
 </OpenCharacterRecord>

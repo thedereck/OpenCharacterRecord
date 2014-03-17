@@ -30,6 +30,8 @@
             <xs:element name="HitPoints" type="BFRPG2_HitPoints" minOccurs="1" maxOccurs="1"/>
             <xs:element name="SavingThrows" type="BFRPG2_SavingThrows" minOccurs="1" maxOccurs="1"/>
             <xs:element name="Languages" type="BFRPG2_Languages" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Money" type="BFRPG2_Money" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Equipment" type="BFRPG2_Equipment" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="BFRPG2_Name">
@@ -637,12 +639,209 @@
             <xs:enumeration value="Halfling"/>
         </xs:restriction>
     </xs:simpleType>
-
-
-
-
-
-
+    <xs:complexType name="BFRPG2_Money">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="PlatinumPieces" type="BFRPG2_PlatinumPieces" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GoldPieces" type="BFRPG2_GoldPieces" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SilverPieces" type="BFRPG2_SilverPieces" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ElectrumPieces" type="BFRPG2_ElectrumPieces" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="CopperPieces" type="BFRPG2_CopperPieces" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_PlatinumPieces">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_GoldPieces">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_SilverPieces">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_ElectrumPieces">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_CopperPieces">
+        <xs:restriction base="BFRPG2_Integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Equipment">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Weapons" type="BFRPG2_Weapons" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ArmorAndShields" type="BFRPG2_ArmorAndShields" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="GeneralEquipment" type="BFRPG2_GeneralEquipment" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="BeastsOfBurden" type="BFRPG2_BeastsOfBurden" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Vehicles" type="BFRPG2_Vehicles" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SiegeEngines" type="BFRPG2_SiegeEngines" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Weapons">
+        <xs:sequence minOccurs="0" maxOccurs="250">
+            <xs:element name="Weapon" type="BFRPG2_Weapon" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_Weapon">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Hand Axe"/>
+            <xs:enumeration value="Battle Axe"/>
+            <xs:enumeration value="Great Axe"/>
+            <xs:enumeration value="Shortbow"/>
+            <xs:enumeration value="Shortbow Arrow"/>
+            <xs:enumeration value="Silver Shortbow Arrow"/>
+            <xs:enumeration value="Longbow"/>
+            <xs:enumeration value="Longbow Arrow"/>
+            <xs:enumeration value="Silver Longbow Arrow"/>
+            <xs:enumeration value="Light Crossbow"/>
+            <xs:enumeration value="Light Quarrel"/>
+            <xs:enumeration value="Silver Light Quarrel"/>
+            <xs:enumeration value="Heavy Crossbow"/>
+            <xs:enumeration value="Heavy Quarrel"/>
+            <xs:enumeration value="Silver Heavy Quarrel"/>
+            <xs:enumeration value="Dagger"/>
+            <xs:enumeration value="Silver Dagger"/>
+            <xs:enumeration value="Shortsword"/>
+            <xs:enumeration value="Longsword"/>
+            <xs:enumeration value="Scimitar"/>
+            <xs:enumeration value="Two-Handed Sword"/>
+            <xs:enumeration value="Warhammer"/>
+            <xs:enumeration value="Mace"/>
+            <xs:enumeration value="Maul"/>
+            <xs:enumeration value="Club"/>
+            <xs:enumeration value="Cudgel"/>
+            <xs:enumeration value="Walking Staff"/>
+            <xs:enumeration value="Quarter Staff"/>
+            <xs:enumeration value="Pole Arm"/>
+            <xs:enumeration value="Sling"/>
+            <xs:enumeration value="Bullet"/>
+            <xs:enumeration value="Stone"/>
+            <xs:enumeration value="Spear"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_ArmorAndShields">
+        <xs:choice minOccurs="0" maxOccurs="10">
+            <xs:element name="Armor" type="BFRPG2_Armor" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Shield" type="BFRPG2_Shield" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_Armor">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="No Armor"/>
+            <xs:enumeration value="Leather Armor"/>
+            <xs:enumeration value="Chain Mail"/>
+            <xs:enumeration value="Plate Mail"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_Shield">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Shield"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_GeneralEquipment">
+        <xs:sequence minOccurs="0" maxOccurs="250">
+            <xs:element name="Weapon" type="BFRPG2_Item" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_Item">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Backpack"/>
+            <xs:enumeration value="Candle"/>
+            <xs:enumeration value="Chalk Pieces"/>
+            <xs:enumeration value="Clothing"/>
+            <xs:enumeration value="Glass Bottle"/>
+            <xs:enumeration value="Glass Vial"/>
+            <xs:enumeration value="Grappling Hook"/>
+            <xs:enumeration value="Holy Symbol"/>
+            <xs:enumeration value="Vial of Holy Water"/>
+            <xs:enumeration value="Iron Spike"/>
+            <xs:enumeration value="10' Ladder"/>
+            <xs:enumeration value="Hooded Lantern"/>
+            <xs:enumeration value="Map Case"/>
+            <xs:enumeration value="Scroll Case"/>
+            <xs:enumeration value="Small Metal Mirror"/>
+            <xs:enumeration value="Flask of Oil"/>
+            <xs:enumeration value="Sheet of Paper"/>
+            <xs:enumeration value="10' Wooden Pole"/>
+            <xs:enumeration value="Quiver"/>
+            <xs:enumeration value="Bolt Case"/>
+            <xs:enumeration value="One Week of Dry Rations"/>
+            <xs:enumeration value="50' Hemp Rope"/>
+            <xs:enumeration value="50' Silk Rope"/>
+            <xs:enumeration value="Large Sack"/>
+            <xs:enumeration value="Small Sack"/>
+            <xs:enumeration value="Large Tent"/>
+            <xs:enumeration value="Small Tent"/>
+            <xs:enumeration value="Thieves' Picks and Tools"/>
+            <xs:enumeration value="Flint and Steel Tenderbox"/>
+            <xs:enumeration value="Torch"/>
+            <xs:enumeration value="Whetstone"/>
+            <xs:enumeration value="Wineskin"/>
+            <xs:enumeration value="Waterskin"/>
+            <xs:enumeration value="Winter Blanket"/>
+            <xs:enumeration value="Vial of Writing Ink"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_BeastsOfBurden">
+        <xs:sequence minOccurs="0" maxOccurs="10">
+            <xs:element name="Beast" type="BFRPG2_BeastOfBurden" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_BeastOfBurden">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Draft Horse"/>
+            <xs:enumeration value="War Horse"/>
+            <xs:enumeration value="Riding Horse"/>
+            <xs:enumeration value="Pony"/>
+            <xs:enumeration value="War Pony"/>
+            <xs:enumeration value="Bit and Bridle"/>
+            <xs:enumeration value="Horseshoes and Shoeing"/>
+            <xs:enumeration value="Pack Saddle"/>
+            <xs:enumeration value="Riding Saddle"/>
+            <xs:enumeration value="Pair of Saddlebags"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_Vehicles">
+        <xs:sequence minOccurs="0" maxOccurs="10">
+            <xs:element name="Vehicle" type="BFRPG2_Vehicle" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_Vehicle">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Chariot"/>
+            <xs:enumeration value="Coach"/>
+            <xs:enumeration value="Wagon"/>
+            <xs:enumeration value="Canoe"/>
+            <xs:enumeration value="Caravel"/>
+            <xs:enumeration value="Carrack"/>
+            <xs:enumeration value="Small Galley"/>
+            <xs:enumeration value="Large Galley"/>
+            <xs:enumeration value="Raft"/>
+            <xs:enumeration value="Barge"/>
+            <xs:enumeration value="Riverboat"/>
+            <xs:enumeration value="Rowboat"/>
+            <xs:enumeration value="Sailboat"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_SiegeEngines">
+        <xs:sequence minOccurs="0" maxOccurs="10">
+            <xs:element name="SiegeEngine" type="BFRPG2_SiegeEngine" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_SiegeEngine">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Ballista"/>
+            <xs:enumeration value="Battering Ram"/>
+            <xs:enumeration value="Onager"/>
+            <xs:enumeration value="Trebuchet"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="BFRPG2_Integer">
         <xs:restriction base="OCR_Integer"/>
     </xs:simpleType>
