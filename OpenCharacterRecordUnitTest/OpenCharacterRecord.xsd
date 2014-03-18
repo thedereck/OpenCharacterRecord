@@ -677,6 +677,12 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Weapons" type="BFRPG2_Weapons" minOccurs="0" maxOccurs="1"/>
             <xs:element name="ArmorAndShields" type="BFRPG2_ArmorAndShields" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicStaves" type="BFRPG2_MagicStaves" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicWands" type="BFRPG2_MagicWands" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicPotions" type="BFRPG2_MagicPotions" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicRings" type="BFRPG2_MagicRings" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicScrolls" type="BFRPG2_MagicScrolls" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Maps" type="BFRPG2_Maps" minOccurs="0" maxOccurs="1"/>
             <xs:element name="GeneralEquipment" type="BFRPG2_GeneralEquipment" minOccurs="0" maxOccurs="1"/>
             <xs:element name="BeastsOfBurden" type="BFRPG2_BeastsOfBurden" minOccurs="0" maxOccurs="1"/>
             <xs:element name="Vehicles" type="BFRPG2_Vehicles" minOccurs="0" maxOccurs="1"/>
@@ -685,7 +691,8 @@
     </xs:complexType>
     <xs:complexType name="BFRPG2_Weapons">
         <xs:sequence minOccurs="0" maxOccurs="250">
-            <xs:element name="Weapon" type="BFRPG2_Weapon" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Weapon" type="BFRPG2_Weapon" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicWeapon" type="BFRPG2_MagicWeapon" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="BFRPG2_Weapon">
@@ -720,15 +727,81 @@
             <xs:enumeration value="Quarter Staff"/>
             <xs:enumeration value="Pole Arm"/>
             <xs:enumeration value="Sling"/>
-            <xs:enumeration value="Bullet"/>
-            <xs:enumeration value="Stone"/>
+            <xs:enumeration value="Sling Bullet"/>
+            <xs:enumeration value="Sling Stone"/>
             <xs:enumeration value="Spear"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicWeapon">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Weapon" type="BFRPG2_MagicWeapon" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="WeaponBonus" type="BFRPG2_MagicWeaponBonus" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SpecialAbility" type="BFRPG2_MagicWeaponSpecialAbility" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG_MagicWeapon">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Great Axe"/>
+            <xs:enumeration value="Battle Axe"/>
+            <xs:enumeration value="Hand Axe"/>
+            <xs:enumeration value="Shortbow"/>
+            <xs:enumeration value="Shortbow Arrow"/>
+            <xs:enumeration value="Longbow"/>
+            <xs:enumeration value="Longbow Arrow"/>
+            <xs:enumeration value="Light Quarrel"/>
+            <xs:enumeration value="Heavy Quarrel"/>
+            <xs:enumeration value="Dagger"/>
+            <xs:enumeration value="Shortsword"/>
+            <xs:enumeration value="Longsword"/>
+            <xs:enumeration value="Scimitar"/>
+            <xs:enumeration value="Two-Handed Sword"/>
+            <xs:enumeration value="Warhammer"/>
+            <xs:enumeration value="Mace"/>
+            <xs:enumeration value="Maul"/>
+            <xs:enumeration value="Pole Arm"/>
+            <xs:enumeration value="Sling Bullet"/>
+            <xs:enumeration value="Spear"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_MagicWeaponBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="+1"/>
+            <xs:enumeration value="+2"/>
+            <xs:enumeration value="+3"/>
+            <xs:enumeration value="+4"/>
+            <xs:enumeration value="+5"/>
+            <xs:enumeration value="+1, +2 vs. Dragons"/>
+            <xs:enumeration value="+1, +2 vs. Enchanted"/>
+            <xs:enumeration value="+1, +2 vs. Lycanthropes"/>
+            <xs:enumeration value="+1, +2 vs. Regenerators"/>
+            <xs:enumeration value="+1, +2 vs. Spell Users"/>
+            <xs:enumeration value="+1, +2 vs. Undead"/>
+            <xs:enumeration value="+1, +3 vs. Dragons"/>
+            <xs:enumeration value="+1, +3 vs. Enchanted"/>
+            <xs:enumeration value="+1, +3 vs. Lycanthropes"/>
+            <xs:enumeration value="+1, +3 vs. Regenerators"/>
+            <xs:enumeration value="+1, +3 vs. Spell Users"/>
+            <xs:enumeration value="+1, +3 vs. Undead"/>
+            <xs:enumeration value="Cursed, -1"/>
+            <xs:enumeration value="Cursed, -2"/>
+        </xs:restriction>        
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_MagicWeaponSpecialAbility">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Casts Light on Command"/>
+            <xs:enumeration value="Charm Person"/>
+            <xs:enumeration value="Drains Energy"/>
+            <xs:enumeration value="Flames on Command"/>
+            <xs:enumeration value="Locate Objects"/>
+            <xs:enumeration value="Wishes"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="BFRPG2_ArmorAndShields">
         <xs:choice minOccurs="0" maxOccurs="10">
-            <xs:element name="Armor" type="BFRPG2_Armor" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="Shield" type="BFRPG2_Shield" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Armor" type="BFRPG2_Armor" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Shield" type="BFRPG2_Shield" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MagicArmor" type="BFRPG2_MagicArmor" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MagicShield" type="BFRPG2_MagicShield" minOccurs="1" maxOccurs="1"/>
         </xs:choice>
     </xs:complexType>
     <xs:simpleType name="BFRPG2_Armor">
@@ -744,10 +817,244 @@
             <xs:enumeration value="Shield"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:complexType name="BFRPG2_GeneralEquipment">
-        <xs:sequence minOccurs="0" maxOccurs="250">
-            <xs:element name="Weapon" type="BFRPG2_Item" minOccurs="1" maxOccurs="1"/>
+    <xs:complexType name="BFRPG2_MagicArmor">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Armor" type="BFRPG2_MagicArmorType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ArmorBonus" type="BFRPG2_MagicArmorBonus" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicArmorType">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Leather Armor"/>
+            <xs:enumeration value="Chain Mail"/>
+            <xs:enumeration value="Plate Mail"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_MagicArmorBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="+1"/>
+            <xs:enumeration value="+2"/>
+            <xs:enumeration value="+3"/>
+            <xs:enumeration value="Cursed -1"/>
+            <xs:enumeration value="Cursed -2"/>
+            <xs:enumeration value="Cursed -3"/>
+            <xs:enumeration value="Cursed, Armor Class 11"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicShield">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Shield" type="BFRPG2_MagicShieldType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ShieldBonus" type="BFRPG2_MagicShieldBonus" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicShieldType">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Shield"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_MagicShieldBonus">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="+1"/>
+            <xs:enumeration value="+2"/>
+            <xs:enumeration value="+3"/>
+            <xs:enumeration value="Cursed -1"/>
+            <xs:enumeration value="Cursed -2"/>
+            <xs:enumeration value="Cursed -3"/>
+            <xs:enumeration value="Cursed, Armor Class 11"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicStaves">
+        <xs:sequence minOccurs="1" maxOccurs="250">
+            <xs:element name="MagicStaff" type="BFRPG2_MagicStaff" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicStaff">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Rod of Cancellation"/>
+            <xs:enumeration value="Snake Staff"/>
+            <xs:enumeration value="Staff of Commanding"/>
+            <xs:enumeration value="Staff of Healing"/>
+            <xs:enumeration value="Staff of Power"/>
+            <xs:enumeration value="Staff of Striking"/>
+            <xs:enumeration value="Staff of Wizardry"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicWands">
+        <xs:sequence minOccurs="1" maxOccurs="250">
+            <xs:element name="MagicWand" type="BFRPG2_MagicWand" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicWand">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Wand of Cold"/>
+            <xs:enumeration value="Wand of Enemy Detection"/>
+            <xs:enumeration value="Wand of Fear"/>
+            <xs:enumeration value="Wand of Fireballs"/>
+            <xs:enumeration value="Wand of Illusion"/>
+            <xs:enumeration value="Wand of Lightning Bolts"/>
+            <xs:enumeration value="Wand of Magic Detection"/>
+            <xs:enumeration value="Wand of Paralyzation"/>
+            <xs:enumeration value="Wand of Polymorph"/>
+            <xs:enumeration value="Wand of Secret Door Detection"/>
+            <xs:enumeration value="Wand of Trap Detection"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicPotions">
+        <xs:sequence minOccurs="1" maxOccurs="250">
+            <xs:element name="Potion" type="BFRPG2_MagicPotion" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicPotion">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Clairaudience"/>
+            <xs:enumeration value="Clairvoyance"/>
+            <xs:enumeration value="Control Animal"/>
+            <xs:enumeration value="Control Dragon"/>
+            <xs:enumeration value="Control Giant"/>
+            <xs:enumeration value="Control Human"/>
+            <xs:enumeration value="Control Plant"/>
+            <xs:enumeration value="Control Undead"/>
+            <xs:enumeration value="Delusion"/>
+            <xs:enumeration value="Diminution"/>
+            <xs:enumeration value="ESP"/>
+            <xs:enumeration value="Fire Resistance"/>
+            <xs:enumeration value="Flying"/>
+            <xs:enumeration value="Gaseous Form"/>
+            <xs:enumeration value="Giant Strength"/>
+            <xs:enumeration value="Growth"/>
+            <xs:enumeration value="Healing"/>
+            <xs:enumeration value="Heroism"/>
+            <xs:enumeration value="Invisibility"/>
+            <xs:enumeration value="Invulnerability"/>
+            <xs:enumeration value="Levitation"/>
+            <xs:enumeration value="Longevity"/>
+            <xs:enumeration value="Poison"/>
+            <xs:enumeration value="Polymorph Self"/>
+            <xs:enumeration value="Speed"/>
+            <xs:enumeration value="Treasure Finding"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicRings">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="MagicRing" type="BFRPG2_MagicRing" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicRing">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Control Animal"/>
+            <xs:enumeration value="Control Human"/>
+            <xs:enumeration value="Control Plant"/>
+            <xs:enumeration value="Delusion"/>
+            <xs:enumeration value="Djinni Summoning"/>
+            <xs:enumeration value="Fire Resistance"/>
+            <xs:enumeration value="Invisibility"/>
+            <xs:enumeration value="Protection +1"/>
+            <xs:enumeration value="Protection +2"/>
+            <xs:enumeration value="Protection +3"/>
+            <xs:enumeration value="Regeneration"/>
+            <xs:enumeration value="Spell Storing"/>
+            <xs:enumeration value="Spell Turning"/>
+            <xs:enumeration value="Telekinesis"/>
+            <xs:enumeration value="Water Walking"/>
+            <xs:enumeration value="Weakness"/>
+            <xs:enumeration value="Wishes"/>
+            <xs:enumeration value="X-Ray Vision"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicScrolls">
+        <xs:sequence minOccurs="1" maxOccurs="250">
+            <xs:element name="Scroll" type="BFRPG2_MagicScroll" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_MagicScroll">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Type" type="BFRPG2_MagicScrollType" minOccurs="1" maxOccurs="1"/>
+            <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element name="ClericSpells" type="BFRPG2_MagicScrollClericSpells" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="MagicUserSpells" type="BFRPG2_MagicScrollMagicUserSpells" minOccurs="1" maxOccurs="1"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MagicScrollType">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Cleric Spell Scroll (1 Spell)"/>
+            <xs:enumeration value="Cleric Spell Scroll (2 Spells)"/>
+            <xs:enumeration value="Cleric Spell Scroll (3 Spells)"/>
+            <xs:enumeration value="Cleric Spell Scroll (4 Spells)"/>
+            <xs:enumeration value="Magic-User Spell Scroll (1 Spell)"/>
+            <xs:enumeration value="Magic-User Spell Scroll (2 Spells)"/>
+            <xs:enumeration value="Magic-User Spell Scroll (3 Spells)"/>
+            <xs:enumeration value="Magic-User Spell Scroll (4 Spells)"/>
+            <xs:enumeration value="Magic-User Spell Scroll (5 Spells)"/>
+            <xs:enumeration value="Magic-User Spell Scroll (6 Spells)"/>
+            <xs:enumeration value="Magic-User Spell Scroll (7 Spells)"/>
+            <xs:enumeration value="Cursed Scroll"/>
+            <xs:enumeration value="Protection From Elementals"/>
+            <xs:enumeration value="Protection From Lycanthropes"/>
+            <xs:enumeration value="Protection From Magic"/>
+            <xs:enumeration value="Protection From Undead"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MagicScrollClericSpells">
+        <xs:choice minOccurs="1" maxOccurs="4">
+            <xs:element name="LevelOne" type="BFRPG2_ClericSpellsLevelOne" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LevelTwo" type="BFRPG2_ClericSpellsLevelTwo" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LevelThree" type="BFRPG2_ClericSpellsLevelThree" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LevelFour" type="BFRPG2_ClericSpellsLevelFour" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LevelFive" type="BFRPG2_ClericSpellsLevelFive" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LevelSix" type="BFRPG2_ClericSpellsLevelSix" minOccurs="1" maxOccurs="1"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_MagicScrollMagicUserSpells">
+        <xs:choice minOccurs="1" maxOccurs="7">
+            <xs:element name="LevelOne" type="BFRPG2_MagicUserSpellsLevelOne" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LevelTwo" type="BFRPG2_MagicUserSpellsLevelTwo" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LevelThree" type="BFRPG2_MagicUserSpellsLevelThree" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LevelFour" type="BFRPG2_MagicUserSpellsLevelFour" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LevelFive" type="BFRPG2_MagicUserSpellsLevelFive" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LevelSix" type="BFRPG2_MagicUserSpellsLevelSix" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Maps">
+        <xs:sequence minOccurs="1" maxOccurs="250">
+            <xs:element name="Map" type="BFRPG2_Map" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_Map">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Type" type="BFRPG2_MapType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MagicItems" type="BFRPG2_MapMagicItems" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BFRPG2_MapType">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Map to Treasure (Type A)"/>
+            <xs:enumeration value="Map to Treasure (Type E)"/>
+            <xs:enumeration value="Map to Treasure (Type G)"/>
+            <xs:enumeration value="Map to Magic Item (1 Item)"/>
+            <xs:enumeration value="Map to Magic Items (2 Items)"/>
+            <xs:enumeration value="Map to Magic Items (3 Items)"/>
+            <xs:enumeration value="Map to Magic Items (4 Items)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="BFRPG2_MapMagicItems">
+        <xs:choice minOccurs="1" maxOccurs="4">
+            <xs:element name="MagicWeapon" type="BFRPG2_MagicWeapon" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicArmor" type="BFRPG2_MagicArmor" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicShield" type="BFRPG2_MagicShield" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicPotion" type="BFRPG2_MagicPotion" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicRing" type="BFRPG2_MagicRing" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicScroll" type="BFRPG2_MagicScroll" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicStaff" type="BFRPG2_MagicStaff" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicWand" type="BFRPG2_MagicWand" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MagicItem" type="BFRPG2_MagicItem" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="BFRPG2_GeneralEquipment">
+        <xs:choice minOccurs="0" maxOccurs="250">
+            <xs:element name="Item" type="BFRPG2_Item" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="MagicItem" type="BFRPG2_MagicItem" minOccurs="1" maxOccurs="1"/>
+        </xs:choice>
     </xs:complexType>
     <xs:simpleType name="BFRPG2_Item">
         <xs:restriction base="BFRPG2_String">
@@ -786,6 +1093,39 @@
             <xs:enumeration value="Waterskin"/>
             <xs:enumeration value="Winter Blanket"/>
             <xs:enumeration value="Vial of Writing Ink"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BFRPG2_MagicItem">
+        <xs:restriction base="BFRPG2_String">
+            <xs:enumeration value="Amulet of Proof against Detection and Location"/>
+            <xs:enumeration value="Bag of Devouring"/>
+            <xs:enumeration value="Bag of Holding"/>
+            <xs:enumeration value="Boots of Levitation"/>
+            <xs:enumeration value="Boots of Speed"/>
+            <xs:enumeration value="Boots of Traveling and Leaping"/>
+            <xs:enumeration value="Bowl of Commanding Water Elementals"/>
+            <xs:enumeration value="Bowl of Commanding Fire Elementals"/>
+            <xs:enumeration value="Broom of Flying"/>
+            <xs:enumeration value="Censer of Commanding Air Elementals"/>
+            <xs:enumeration value="Cloak of Displacement"/>
+            <xs:enumeration value="Crystal Ball"/>
+            <xs:enumeration value="Crystal Ball with Clairaudience"/>
+            <xs:enumeration value="Drums of Panic"/>
+            <xs:enumeration value="Efreeti Bottle"/>
+            <xs:enumeration value="Elven Boots"/>
+            <xs:enumeration value="Elven Cloak"/>
+            <xs:enumeration value="Flying Carpet"/>
+            <xs:enumeration value="Gauntlets of Ogre Power"/>
+            <xs:enumeration value="Girdle of Giant Strength"/>
+            <xs:enumeration value="Helm of Reading Languages and Magic"/>
+            <xs:enumeration value="Helm of Telepathy"/>
+            <xs:enumeration value="Helm of Telportation"/>
+            <xs:enumeration value="Horn of Blasting"/>
+            <xs:enumeration value="Medallion of ESP"/>
+            <xs:enumeration value="Mirror of Life Trapping"/>
+            <xs:enumeration value="Rope of Climbing"/>
+            <xs:enumeration value="Scarab of Protection"/>
+            <xs:enumeration value="Stone of Commanding Earth Elementals"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="BFRPG2_BeastsOfBurden">
@@ -842,6 +1182,10 @@
             <xs:enumeration value="Trebuchet"/>
         </xs:restriction>
     </xs:simpleType>
+
+    
+    
+    
     <xs:simpleType name="BFRPG2_Integer">
         <xs:restriction base="OCR_Integer"/>
     </xs:simpleType>

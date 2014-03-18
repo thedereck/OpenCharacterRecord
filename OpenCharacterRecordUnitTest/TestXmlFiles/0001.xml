@@ -94,6 +94,9 @@
                 <Armor></Armor>
                 <Shield></Shield>
             </ArmorAndShields>
+            <MagicPotions>
+                <Potion></Potion>
+            </MagicPotions>
             <GeneralEquipment>
                 <Item></Item>
             </GeneralEquipment>
