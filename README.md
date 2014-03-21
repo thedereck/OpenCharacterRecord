@@ -13,10 +13,11 @@ The XSD file was created by hand using Visual Studio 2013, and the HTML file and
 So here is the To Do List:
 * Add annotations to the XSD.
 * Create unit tests to thoroughly test the XSD.
-* Add example XML character files to the GitHub repository.
-* Add Basic Fantasy Role-Playing Game, 3rd Editition character records to the XSD.
-* Add Spirit Of The Century character records to the XSD.
+* Add example XML character records to the GitHub repository.
+* Add Basic Fantasy Role-Playing Game, 3rd Editition character records to the XSD. Refactor to use common elements, and hopefully fewer specific CompexTypes in the XSD.
+* Add Spirit Of The Century character records to the XSD. Again, refactor the XSD.
+* Add Pathfinder character records to the XSD. Refactor the XSD. (Do you see a pattern here?)
 
-Take a look and provide some feedback.
+Please take a look and provide some feedback.
 
 Thanks.
