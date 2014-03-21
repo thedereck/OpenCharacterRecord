@@ -6,7 +6,7 @@ So this is the *very* initial implementation of my grand idea using the Open Gam
 
 That being said, let's consider this a preview release. It's so preview, I'm not even giving a the XSD a version number higher than 0.0.0. Once I write some unit tests, I'll increment the version number accordingly. Once I have full unit test coverage, I'll increment the version to 1.0.0.
 
-You'll find a XSD file in this repository that can be used to validate the character record. There is also a html file and directory of images to make it easier to understand the layout of the XSD file. If you just want to check out the generated HTML and images of the schema, you can find them at [http://thedereck.github.io/OpenCharacterRecord/OpenCharacterRecord.html](http://thedereck.github.io/OpenCharacterRecord/OpenCharacterRecord.html).
+You'll find a XSD file in this repository that can be used to validate the character record. There is also a html file and directory of images to make it easier to understand the layout of the XSD file. If you just want to check out the generated HTML and images of the schema, you can find them at [https://thedereck.github.io/OpenCharacterRecord/OpenCharacterRecord.html](https://thedereck.github.io/OpenCharacterRecord/OpenCharacterRecord.html).
 
 The XSD file was created by hand using Visual Studio 2013, and the HTML file and images were created using XMLSpy.
 
