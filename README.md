@@ -14,7 +14,7 @@ So here is the To Do List:
 * Add annotations to the XSD.
 * Create unit tests to thoroughly test the XSD.
 * Add example XML character records to the GitHub repository.
-* Add Basic Fantasy Role-Playing Game, 3rd Editition character records to the XSD. Refactor to use common elements, and hopefully fewer specific CompexTypes in the XSD.
+* Add Basic Fantasy Role-Playing Game, 3rd Editition character records to the XSD. Refactor to use common elements, and hopefully fewer specific ComplexTypes in the XSD.
 * Add Spirit Of The Century character records to the XSD. Again, refactor the XSD.
 * Add Pathfinder character records to the XSD. Refactor the XSD. (Do you see a pattern here?)
 
