@@ -56,38 +56,55 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Cleric-0001.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Cleric-0001.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0001.xml" />
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0002.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0001.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0003.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0002.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0004.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0003.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0005.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0004.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0006.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0005.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0008.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0006.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0009.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0008.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-MagicUser-0001.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0009.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Thief-0001.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0010.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlTestFiles\BFRGP2-Human-Fighter-0007.xml">
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0011.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0013.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0014.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-MagicUser-0001.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Thief-0001.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0007.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0012.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
