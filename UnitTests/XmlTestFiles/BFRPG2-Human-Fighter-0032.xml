@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- INVALID Character Abilities -->
+<OpenCharacterRecord version="0.0.0">
+    <BFRPG2>
+        <Name>Dereck The Extreme</Name>
+        <Background></Background>
+        <Race>
+            <Human>
+                <Abilities>
+                    <Ability>Humans get a 10% bonus to all Experience Points earned.</Ability>
+                </Abilities>
+            </Human>
+        </Race>
+        <Classes>
+            <Fighter>
+                <Level>20</Level>
+                <ExperiencePoints>0</ExperiencePoints>
+            </Fighter>
+        </Classes>
+        <CharacterAbilities></CharacterAbilities>
+        <ArmorClass>0</ArmorClass>
+        <HitPoints>
+            <Current>0</Current>
+            <Maximum>0</Maximum>
+        </HitPoints>
+        <SavingThrows>
+            <DeathRay>2</DeathRay>
+            <DragonBreath>2</DragonBreath>
+            <MagicWands>2</MagicWands>
+            <Paralysis>2</Paralysis>
+            <Petrify>2</Petrify>
+            <Poison>2</Poison>
+            <Spells>2</Spells>
+        </SavingThrows>
+        <Languages>
+            <Language>Common</Language>
+        </Languages>
+        <Money>
+            <PlatinumPieces>0</PlatinumPieces>
+            <GoldPieces>0</GoldPieces>
+            <SilverPieces>0</SilverPieces>
+            <ElectrumPieces>0</ElectrumPieces>
+            <CopperPieces>0</CopperPieces>
+        </Money>
+        <Equipment></Equipment>
+    </BFRPG2>
+</OpenCharacterRecord>

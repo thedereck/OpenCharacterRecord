@@ -140,6 +140,24 @@
     <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0029.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0030.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0031.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0032.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0033.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0034.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0035.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XmlTestFiles\BFRPG2-Human-MagicUser-0001.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
