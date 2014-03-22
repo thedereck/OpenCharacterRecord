@@ -56,6 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0015.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XmlTestFiles\BFRPG2-Human-Cleric-0001.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -93,6 +96,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0014.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0016.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0017.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0018.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0019.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlTestFiles\BFRPG2-Human-Fighter-0020.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlTestFiles\BFRPG2-Human-MagicUser-0001.xml">

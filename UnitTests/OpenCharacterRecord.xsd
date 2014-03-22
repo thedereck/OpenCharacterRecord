@@ -217,11 +217,58 @@
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="BFRPG2_Classes">
-        <xs:choice minOccurs="1" maxOccurs="4">
-            <xs:element name="Cleric" type="BFRPG2_Cleric" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="MagicUser" type="BFRPG2_MagicUser" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+        <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Cleric" type="BFRPG2_Cleric" minOccurs="1" maxOccurs="1"/>
+                <xs:choice minOccurs="0" maxOccurs="1">
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="1" maxOccurs="1"/>
+                        <xs:choice minOccurs="0" maxOccurs="1">
+                            <xs:sequence minOccurs="1" maxOccurs="1">
+                                <xs:element name="MagicUser" type="BFRPG2_MagicUser" minOccurs="1" maxOccurs="1"/>
+                                <xs:choice minOccurs="0" maxOccurs="1">
+                                    <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+                                </xs:choice>
+                            </xs:sequence>
+                            <xs:sequence minOccurs="1" maxOccurs="1">
+                                <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+                            </xs:sequence>
+                        </xs:choice>
+                    </xs:sequence>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="MagicUser" type="BFRPG2_MagicUser" minOccurs="1" maxOccurs="1"/>
+                        <xs:choice minOccurs="0" maxOccurs="1">
+                            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+                        </xs:choice>
+                    </xs:sequence>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:choice>
+            </xs:sequence>
+            <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Fighter" type="BFRPG2_Fighter" minOccurs="1" maxOccurs="1"/>
+                <xs:choice minOccurs="0" maxOccurs="1">
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="MagicUser" type="BFRPG2_MagicUser" minOccurs="1" maxOccurs="1"/>
+                        <xs:choice minOccurs="0" maxOccurs="1">
+                            <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+                        </xs:choice>
+                    </xs:sequence>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:choice>
+            </xs:sequence>
+            <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="MagicUser" type="BFRPG2_MagicUser" minOccurs="1" maxOccurs="1"/>
+                <xs:choice minOccurs="0" maxOccurs="1">
+                    <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Thief" type="BFRPG2_Thief" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
         </xs:choice>
     </xs:complexType>
     <xs:complexType name="BFRPG2_Cleric">
