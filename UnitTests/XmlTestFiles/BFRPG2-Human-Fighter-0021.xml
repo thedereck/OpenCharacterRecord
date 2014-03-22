@@ -2,7 +2,7 @@
 <!-- INVALID Fighter -->
 <OpenCharacterRecord version="0.0.0">
     <BFRPG2>
-        <Name>Dereck The Sublime</Name>
+        <Name>Dereck The Tyrant</Name>
         <Background></Background>
         <Race>
             <Human>
@@ -13,7 +13,7 @@
         </Race>
         <Classes>
             <Fighter>
-                <Title></Title>
+                <Level></Level>
             </Fighter>
         </Classes>
         <CharacterAbilities>

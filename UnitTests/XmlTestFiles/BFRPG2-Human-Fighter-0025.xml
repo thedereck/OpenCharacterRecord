@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- INVALID Fighter -->
+<!-- INVALID Level -->
 <OpenCharacterRecord version="0.0.0">
     <BFRPG2>
-        <Name>Dereck The Sublime</Name>
+        <Name>Dereck The Xeon Slayer</Name>
         <Background></Background>
         <Race>
             <Human>
@@ -13,7 +13,8 @@
         </Race>
         <Classes>
             <Fighter>
-                <Title></Title>
+                <Level>0</Level>
+                <ExperiencePoints>0</ExperiencePoints>
             </Fighter>
         </Classes>
         <CharacterAbilities>
