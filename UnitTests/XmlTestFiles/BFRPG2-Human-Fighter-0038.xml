@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- INVALID Character Abilities -->
+<!-- INVALID Charisma -->
 <OpenCharacterRecord version="0.0.0">
     <BFRPG2>
-        <Name>Dereck The Goofy</Name>
+        <Name>Dereck The Kook</Name>
         <Background></Background>
         <Race>
             <Human>
@@ -20,6 +20,10 @@
         <CharacterAbilities>
             <Strength></Strength>
             <Intelligence></Intelligence>
+            <Wisdom></Wisdom>
+            <Dexterity></Dexterity>
+            <Constitution></Constitution>
+            <Charisma></Charisma>
         </CharacterAbilities>
         <ArmorClass>0</ArmorClass>
         <HitPoints>

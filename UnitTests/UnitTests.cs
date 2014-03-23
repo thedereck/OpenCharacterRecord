@@ -266,6 +266,41 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void HumanFighter0036()
+        {
+            string valid = Validate(@"XmlTestFiles\BFRPG2-Human-Fighter-0036.xml");
+            Assert.AreNotEqual("VALID", valid, false, valid);
+        }
+
+        [TestMethod]
+        public void HumanFighter0037()
+        {
+            string valid = Validate(@"XmlTestFiles\BFRPG2-Human-Fighter-0037.xml");
+            Assert.AreNotEqual("VALID", valid, false, valid);
+        }
+
+        [TestMethod]
+        public void HumanFighter0038()
+        {
+            string valid = Validate(@"XmlTestFiles\BFRPG2-Human-Fighter-0038.xml");
+            Assert.AreNotEqual("VALID", valid, false, valid);
+        }
+
+        [TestMethod]
+        public void HumanFighter0039()
+        {
+            string valid = Validate(@"XmlTestFiles\BFRPG2-Human-Fighter-0039.xml");
+            Assert.AreNotEqual("VALID", valid, false, valid);
+        }
+
+        [TestMethod]
+        public void HumanFighter0040()
+        {
+            string valid = Validate(@"XmlTestFiles\BFRPG2-Human-Fighter-0040.xml");
+            Assert.AreNotEqual("VALID", valid, false, valid);
+        }
+
+        [TestMethod]
         public void HumanCleric0001()
         {
             string valid = Validate(@"XmlTestFiles\BFRPG2-Human-Cleric-0001.xml");

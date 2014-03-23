@@ -2,7 +2,7 @@
 <!-- INVALID Character Abilities -->
 <OpenCharacterRecord version="0.0.0">
     <BFRPG2>
-        <Name>Dereck The Goofy</Name>
+        <Name>Dereck The Jumper</Name>
         <Background></Background>
         <Race>
             <Human>
@@ -20,6 +20,9 @@
         <CharacterAbilities>
             <Strength></Strength>
             <Intelligence></Intelligence>
+            <Wisdom></Wisdom>
+            <Dexterity></Dexterity>
+            <Constitution></Constitution>
         </CharacterAbilities>
         <ArmorClass>0</ArmorClass>
         <HitPoints>
